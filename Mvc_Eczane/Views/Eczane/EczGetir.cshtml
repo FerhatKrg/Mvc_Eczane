@@ -1,0 +1,20 @@
+﻿@model Mvc_Eczane.Models.Entity.TBLECZANE
+@{
+    ViewBag.Title = "EczGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Eczane", FormMethod.Post))
+{
+    <div style="margin-top:15px">
+        <label>Eczane Adı</label>
+        @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Şehir</label>
+        @Html.TextBoxFor(x => x.SEHIR, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(x=>x.ID)
+    <button class="btn btn-primary">Güncelle</button>
+}
+

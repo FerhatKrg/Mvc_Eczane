@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 240px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    color: #0026ff;
+                }
+
+        .main {
+            margin-left: 240px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <a href="/AnaSayfa/Index"><i class="glyphicon glyphicon-home"></i> &nbsp; Anasayfa</a>
+        <a href="/Kategori/Index/"><i class="glyphicon glyphicon-list"></i> &nbsp; Kategoriler</a>
+        <a href="/ilac/Index/"><i class="fas fa-capsules"></i> &nbsp; İlaçlar</a>
+        <a href="/Eczane/Index/"><i class="fas fa-hospital"></i> &nbsp; Eczaneler</a>
+        <a href="/Personel/Index/"><i class="glyphicon glyphicon-user"></i> &nbsp; Personeller</a>
+        <a href="/Satis/Index/"><i class="glyphicon glyphicon-tower"></i> &nbsp; Satış Sayfası</a>
+        <a href="/Stok/StokEkle/"><i class="fas fa-cubes"></i> &nbsp; Stok Girişi</a>
+        <a href="/Islemler/Index/"><i class="glyphicon glyphicon-circle-arrow-right"></i> &nbsp; İşlemler</a>
+        <a href="/Istatistik/Index/"><i class="fas fa-chart-line"></i> &nbsp; İstatistikler</a>
+        <a href="/Iletisim/Index/"><i class="fas fa-envelope"></i> &nbsp; Gelen Mesajlar</a>
+        <a href="/Vitrin/Index/"><i class="fas fa-store"></i> &nbsp; Vitrin</a>
+        <a href="/login/LogOut/"><i class="glyphicon glyphicon-log-out"></i> &nbsp; Çıkış</a>
+
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+

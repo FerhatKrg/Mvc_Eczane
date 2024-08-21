@@ -1,0 +1,25 @@
+﻿@using Mvc_Eczane.Models.Entity;
+@model List<TBLSATIS> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Personel</th>
+        <th>Eczane</th>
+        <th>İlaç</th>
+        <th>Satış Adet</th>
+    </tr>
+    @foreach(var x in Model)
+            {
+               <tr>
+                   <td>@x.TBLPERSONEL.AD @x.TBLPERSONEL.SOYAD</td>
+                   <td>@x.TBLECZANE.AD</td>
+                   <td>@x.TBLILAC.ILACADI</td>
+                   <td>@x.SATISADET</td>
+               </tr>
+            }
+</table>
+

@@ -1,0 +1,32 @@
+﻿@using Mvc_Eczane.Models.Entity;
+@model List<TBLILETISIM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>İsim</th>
+        <th>Mail</th>
+        <th>Konu</th>
+        <th>Mesaj</th>
+        <th>Tarih</th>
+        <th>Okundu</th>
+    </tr>
+    @foreach (var msj in Model)
+    {
+        <tr>
+            <td>@msj.AD</td>
+            <td>@msj.MAIL</td>
+            <td>@msj.KONU</td>
+            <td>@msj.Mesaj</td>
+            <td>@msj.TARIH</td>
+          
+            <td><a href="/Iletisim/Oku/@msj.ID" class="btn btn-primary">Okundu</a></td>
+        </tr>
+    }
+</table>
+
+

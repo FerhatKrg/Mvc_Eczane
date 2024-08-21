@@ -1,0 +1,28 @@
+﻿@using Mvc_Eczane.Models.Entity
+@model List<TBLECZANE>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Eczane ID</th>
+        <th>Eczane Adı</th>
+        <th>Şehir</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.ID</td>  
+            <td>@x.AD</td>  
+            <td>@x.SEHIR</td>  
+            <td>@Html.ActionLink("Sil","EczSil",new { id = x.ID }, new {@class="btn btn-danger" , onclick="return confirm('Eczaneyi Silmek İstediğinizden Eminmisiniz ?')"})</td>  
+            <td><a href="/Eczane/EczGetir/@x.ID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Eczane/YeniEcz/" class="btn btn-primary">Yeni Eczane Girişi</a>
+

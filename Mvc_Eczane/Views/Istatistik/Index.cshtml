@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .statistics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .stat-card {
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+            .stat-card .icon {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+
+            .stat-card .text {
+                color: #ffffff;
+            }
+
+            .stat-card h3 {
+                margin: 0;
+                font-size: 2em;
+            }
+
+            .stat-card p {
+                margin: 0;
+                font-size: 0.9em;
+            }
+
+
+        .sales {
+            background-color: #4caf50;
+        }
+
+            .sales .icon {
+                color: #ffffff;
+            }
+
+        .new-users {
+            background-color: #2196f3;
+        }
+
+            .new-users .icon {
+                color: #ffffff;
+            }
+
+        .orders {
+            background-color: #ff9800;
+        }
+
+            .orders .icon {
+                color: #ffffff;
+            }
+
+        .visitors {
+            background-color: #f44336;
+        }
+
+            .visitors .icon {
+                color: #ffffff;
+            }
+
+
+        .dollar-icon::before {
+            content: "\f155";
+            font-family: 'FontAwesome';
+        }
+
+        .user-icon::before {
+            content: "\f007";
+            font-family: 'FontAwesome';
+        }
+
+        .order-icon::before {
+            content: "\f2d9";
+            font-family: 'FontAwesome';
+        }
+
+        .visit-icon::before {
+            content: "\f6d8";
+            font-family: 'FontAwesome';
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="statistics">
+        <div class="stat-card sales">
+            <div class="icon">
+                <i class="fas fa-turkish-lira"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr8</h3>
+                <p>Kasadaki Tutar</p>
+            </div>
+        </div>
+
+        <div class="stat-card new-users">
+            <div class="icon">
+                <i class="fas fa-hospital-alt"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr1</h3>
+                <p>Toplam Eczane Sayısı</p>
+            </div>
+        </div>
+
+        <div class="stat-card orders">
+            <div class="icon">
+                <i class="fas fa-money-check"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr2</h3>
+                <p>İlaç Sayısı</p>
+            </div>
+        </div>
+
+        <div class="stat-card visitors">
+            <div class="icon">
+                <i class="fas fa-capsules"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr3</h3>
+                <p>İlaç Stoğu</p>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="statistics">
+        <div class="stat-card sales">
+            <div class="icon">
+                <i class="glyphicon glyphicon-tower"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr4</h3>
+                <p>Satılan İlaç Sayısı</p>
+            </div>
+        </div>
+
+        <div class="stat-card new-users">
+            <div class="icon">
+                <i class="glyphicon glyphicon-check"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr5</h3>
+                <p>Okunmuş Mesaj Sayısı</p>
+            </div>
+        </div>
+
+        <div class="stat-card orders">
+            <div class="icon">
+                <i class="glyphicon glyphicon-envelope"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr6</h3>
+                <p>Okunmamış Mesaj Sayısı</p>
+            </div>
+        </div>
+
+        <div class="stat-card visitors">
+            <div class="icon">
+                <i class="glyphicon glyphicon-user"></i>
+            </div>
+            <div class="text">
+                <h3>@ViewBag.dgr7</h3>
+                <p>Personel Sayısı</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+@*<link href="~/web2/css/style.css" rel="stylesheet" />
+    <script src="~/web2/js/Chart1.js"></script>
+    <script src="~/web2/js/jquery.min.js"></script>
+    <script src="~/web2/js/jquery.vmap.js"></script>
+    <script src="~/web2/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/web2/js/jquery.vmap.world.js"></script>
+    <link href="~/web2/css/jqvmap.css" rel="stylesheet" />
+
+    <div class="list_of_members">
+        <div class="sales">
+            <div class="icon">
+                <i class="dollar"></i>
+            </div>
+            <div class="icon-text">
+                <h3>15896</h3>
+                <p>Kasadaki Tutar</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="new-users">
+            <div class="icon">
+                <i class="user1"></i>
+            </div>
+            <div class="icon-text">
+                <h3>@ViewBag.dgr1</h3>
+                <p>Toplam Eczane Sayısı</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="orders">
+            <div class="icon">
+                <i class="order"></i>
+            </div>
+            <div class="icon-text">
+                <h3>@ViewBag.dgr2</h3>
+                <p>İlaç Sayısı</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="visitors">
+            <div class="icon">
+                <i class="visit"></i>
+            </div>
+            <div class="icon-text">
+                <h3>@ViewBag.dgr3</h3>
+                <p>İlaç Stoğu</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <br />*@
+

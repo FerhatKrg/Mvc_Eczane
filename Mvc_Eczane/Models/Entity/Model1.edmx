@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbEczaneOtomasyonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBLECZANE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="SEHIR" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLILAC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ILACADI" Type="varchar" MaxLength="50" />
+          <Property Name="KATEGORİ" Type="tinyint" />
+          <Property Name="STOK" Type="int" />
+          <Property Name="FIYAT" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLILETISIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+          <Property Name="MAIL" Type="varchar" MaxLength="100" />
+          <Property Name="KONU" Type="varchar" MaxLength="30" />
+          <Property Name="Mesaj" Type="varchar" MaxLength="1000" />
+          <Property Name="TARIH" Type="smalldatetime" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBLKASA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Para" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLPERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="25" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="25" />
+          <Property Name="TELEFON" Type="varchar" MaxLength="20" />
+          <Property Name="MAIL" Type="varchar" MaxLength="75" />
+          <Property Name="SIFRE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLSATIS">
+          <Key>
+            <PropertyRef Name="SATISID" />
+          </Key>
+          <Property Name="SATISID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERSONEL" Type="int" />
+          <Property Name="ECZANE" Type="int" />
+          <Property Name="SATISADET" Type="int" />
+          <Property Name="ILAC" Type="int" />
+        </EntityType>
+        <Association Name="FK_TBLILAC_TBLKATEGORI">
+          <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+          <End Role="TBLILAC" Type="Self.TBLILAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLILAC">
+              <PropertyRef Name="KATEGORİ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSATIS_TBLECZANE">
+          <End Role="TBLECZANE" Type="Self.TBLECZANE" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLECZANE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="ECZANE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSATIS_TBLILAC">
+          <End Role="TBLILAC" Type="Self.TBLILAC" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLILAC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="ILAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSATIS_TBLPERSONEL">
+          <End Role="TBLPERSONEL" Type="Self.TBLPERSONEL" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLPERSONEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="PERSONEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEczaneOtomasyonModelStoreContainer">
+          <EntitySet Name="TBLECZANE" EntityType="Self.TBLECZANE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLILAC" EntityType="Self.TBLILAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLILETISIM" EntityType="Self.TBLILETISIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKASA" EntityType="Self.TBLKASA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSATIS" EntityType="Self.TBLSATIS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLILAC_TBLKATEGORI" Association="Self.FK_TBLILAC_TBLKATEGORI">
+            <End Role="TBLKATEGORI" EntitySet="TBLKATEGORI" />
+            <End Role="TBLILAC" EntitySet="TBLILAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSATIS_TBLECZANE" Association="Self.FK_TBLSATIS_TBLECZANE">
+            <End Role="TBLECZANE" EntitySet="TBLECZANE" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSATIS_TBLILAC" Association="Self.FK_TBLSATIS_TBLILAC">
+            <End Role="TBLILAC" EntitySet="TBLILAC" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSATIS_TBLPERSONEL" Association="Self.FK_TBLSATIS_TBLPERSONEL">
+            <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbEczaneOtomasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBLECZANE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEHIR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLSATIS" Relationship="Self.FK_TBLSATIS_TBLECZANE" FromRole="TBLECZANE" ToRole="TBLSATIS" />
+        </EntityType>
+        <EntityType Name="TBLILAC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ILACADI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KATEGORİ" Type="Byte" />
+          <Property Name="STOK" Type="Int32" />
+          <NavigationProperty Name="TBLKATEGORI" Relationship="Self.FK_TBLILAC_TBLKATEGORI" FromRole="TBLILAC" ToRole="TBLKATEGORI" />
+          <NavigationProperty Name="TBLSATIS" Relationship="Self.FK_TBLSATIS_TBLILAC" FromRole="TBLILAC" ToRole="TBLSATIS" />
+          <Property Name="FIYAT" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLILAC" Relationship="Self.FK_TBLILAC_TBLKATEGORI" FromRole="TBLKATEGORI" ToRole="TBLILAC" />
+        </EntityType>
+        <EntityType Name="TBLPERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLSATIS" Relationship="Self.FK_TBLSATIS_TBLPERSONEL" FromRole="TBLPERSONEL" ToRole="TBLSATIS" />
+        </EntityType>
+        <EntityType Name="TBLSATIS">
+          <Key>
+            <PropertyRef Name="SATISID" />
+          </Key>
+          <Property Name="SATISID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERSONEL" Type="Int32" />
+          <Property Name="ECZANE" Type="Int32" />
+          <Property Name="SATISADET" Type="Int32" />
+          <Property Name="ILAC" Type="Int32" />
+          <NavigationProperty Name="TBLECZANE" Relationship="Self.FK_TBLSATIS_TBLECZANE" FromRole="TBLSATIS" ToRole="TBLECZANE" />
+          <NavigationProperty Name="TBLILAC" Relationship="Self.FK_TBLSATIS_TBLILAC" FromRole="TBLSATIS" ToRole="TBLILAC" />
+          <NavigationProperty Name="TBLPERSONEL" Relationship="Self.FK_TBLSATIS_TBLPERSONEL" FromRole="TBLSATIS" ToRole="TBLPERSONEL" />
+        </EntityType>
+        <Association Name="FK_TBLSATIS_TBLECZANE">
+          <End Role="TBLECZANE" Type="Self.TBLECZANE" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLECZANE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="ECZANE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLILAC_TBLKATEGORI">
+          <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+          <End Role="TBLILAC" Type="Self.TBLILAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLILAC">
+              <PropertyRef Name="KATEGORİ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSATIS_TBLILAC">
+          <End Role="TBLILAC" Type="Self.TBLILAC" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLILAC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="ILAC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSATIS_TBLPERSONEL">
+          <End Role="TBLPERSONEL" Type="Self.TBLPERSONEL" Multiplicity="0..1" />
+          <End Role="TBLSATIS" Type="Self.TBLSATIS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLPERSONEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLSATIS">
+              <PropertyRef Name="PERSONEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbEczaneOtomasyonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBLECZANE" EntityType="Self.TBLECZANE" />
+          <EntitySet Name="TBLILAC" EntityType="Self.TBLILAC" />
+          <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" />
+          <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" />
+          <EntitySet Name="TBLSATIS" EntityType="Self.TBLSATIS" />
+          <AssociationSet Name="FK_TBLSATIS_TBLECZANE" Association="Self.FK_TBLSATIS_TBLECZANE">
+            <End Role="TBLECZANE" EntitySet="TBLECZANE" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLILAC_TBLKATEGORI" Association="Self.FK_TBLILAC_TBLKATEGORI">
+            <End Role="TBLKATEGORI" EntitySet="TBLKATEGORI" />
+            <End Role="TBLILAC" EntitySet="TBLILAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSATIS_TBLILAC" Association="Self.FK_TBLSATIS_TBLILAC">
+            <End Role="TBLILAC" EntitySet="TBLILAC" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSATIS_TBLPERSONEL" Association="Self.FK_TBLSATIS_TBLPERSONEL">
+            <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
+            <End Role="TBLSATIS" EntitySet="TBLSATIS" />
+          </AssociationSet>
+          <EntitySet Name="TBLILETISIM" EntityType="DbEczaneOtomasyonModel.TBLILETISIM" />
+          <EntitySet Name="TBLKASA" EntityType="DbEczaneOtomasyonModel.TBLKASA" />
+        </EntityContainer>
+        <EntityType Name="TBLILETISIM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KONU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mesaj" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="TARIH" Type="DateTime" Precision="0" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBLKASA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Para" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbEczaneOtomasyonModelStoreContainer" CdmEntityContainer="DbEczaneOtomasyonEntities">
+          <EntitySetMapping Name="TBLECZANE">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLECZANE">
+              <MappingFragment StoreEntitySet="TBLECZANE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SEHIR" ColumnName="SEHIR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLILAC">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLILAC">
+              <MappingFragment StoreEntitySet="TBLILAC">
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ILACADI" ColumnName="ILACADI" />
+                <ScalarProperty Name="KATEGORİ" ColumnName="KATEGORİ" />
+                <ScalarProperty Name="STOK" ColumnName="STOK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKATEGORI">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLKATEGORI">
+              <MappingFragment StoreEntitySet="TBLKATEGORI">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLPERSONEL">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLPERSONEL">
+              <MappingFragment StoreEntitySet="TBLPERSONEL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSATIS">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLSATIS">
+              <MappingFragment StoreEntitySet="TBLSATIS">
+                <ScalarProperty Name="SATISID" ColumnName="SATISID" />
+                <ScalarProperty Name="PERSONEL" ColumnName="PERSONEL" />
+                <ScalarProperty Name="ECZANE" ColumnName="ECZANE" />
+                <ScalarProperty Name="SATISADET" ColumnName="SATISADET" />
+                <ScalarProperty Name="ILAC" ColumnName="ILAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLILETISIM">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLILETISIM">
+              <MappingFragment StoreEntitySet="TBLILETISIM">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="KONU" ColumnName="KONU" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKASA">
+            <EntityTypeMapping TypeName="DbEczaneOtomasyonModel.TBLKASA">
+              <MappingFragment StoreEntitySet="TBLKASA">
+                <ScalarProperty Name="Para" ColumnName="Para" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+﻿@model Mvc_Eczane.Models.Entity.TBLPERSONEL
+@{
+    ViewBag.Title = "PersonelGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Guncelle", "Personel", FormMethod.Post))
+{
+    <div style="margin-top:15px">
+        <label>Personel Adı</label>
+        @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Personel Soyadı</label>
+        @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Personel Telefon</label>
+        @Html.TextBoxFor(x => x.TELEFON, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x=>x.TELEFON,"",new {@style="color:red"})
+    </div>
+    <div style="margin-top:15px">
+        <label>Personel Mail</label>
+        @Html.TextBoxFor(x => x.MAIL, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.MAIL, "", new { @style = "color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Personel Şifre</label>
+        @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SIFRE, "", new { @style = "color:red" })
+    </div>
+    @Html.HiddenFor(x => x.ID)
+    <button class="btn btn-primary">Güncelle</button>
+}
+

@@ -1,0 +1,32 @@
+﻿@using Mvc_Eczane.Models.Entity
+@model List<TBLPERSONEL>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Personel ID</th>
+        <th>Personel İsim</th>
+        <th>Telefon</th>
+        <th>Mail</th>
+        <th>Şifre</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.ID</td>
+            <td>@x.AD @x.SOYAD</td>
+            <td>@x.TELEFON</td>
+            <td>@x.MAIL</td>
+            <td>@x.SIFRE</td>
+            <td>@Html.ActionLink("Sil", "PersonelSil", new { id = x.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Personeli Silmek İstediğinizden Eminmisiniz ?')" })</td>
+            <td><a href="/Personel/PersonelGetir/@x.ID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
+

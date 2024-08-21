@@ -1,0 +1,16 @@
+﻿@model Mvc_Eczane.Models.Entity.TBLKATEGORI
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+{
+    <div style="margin-top:15px">
+        <label>İlaç Adı</label>
+        @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+    </div>
+   @Html.HiddenFor(x=>x.ID)
+    <button class="btn btn-success">Güncelle</button>
+}
+

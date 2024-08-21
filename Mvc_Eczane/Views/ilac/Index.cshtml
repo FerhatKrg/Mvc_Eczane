@@ -1,0 +1,43 @@
+﻿@using Mvc_Eczane.Models.Entity
+@model List<TBLILAC>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>İlaçlar Sayfası</h2>
+@using (Html.BeginForm("Index", "ilac", FormMethod.Get))
+{
+    <div>
+        <b>Aranacak İlacı Giriniz </b> <input type="text" name="p" />
+        <input type="submit"  value="Ara" />
+    </div>
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>İlaç Adı</th>
+        <th>Stok</th>
+        <th>Kategori Adı</th>
+        <th>Fiyat</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var ilac in Model)
+    {
+        <tr>
+            <td>@ilac.ID</td>
+            <td>@ilac.ILACADI</td>
+            <td>@ilac.STOK</td>
+            <td>@ilac.TBLKATEGORI.AD</td>
+            <td>@ilac.FIYAT</td>
+            <td>@Html.ActionLink("Sil", "IlacSil", new { id = ilac.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyormusunuz ?')" })</td>
+            <td><a href="/ilac/IlacGetir/@ilac.ID" class="btn btn-primary">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/ilac/IlacEkle/" class="btn btn-success">Yeni İlaç Girişi</a>
+
+

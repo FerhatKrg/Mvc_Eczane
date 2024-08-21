@@ -1,0 +1,56 @@
+﻿@model Mvc_Eczane.Models.Entity.TBLPERSONEL
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giriş Yapan Personel Bilgileri</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.ID)
+            @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mail Adresi : @HttpContext.Current.User.Identity.Name
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.AD)
+            @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.SOYAD)
+            @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.TELEFON)
+            @Html.TextBoxFor(x => x.TELEFON, new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.MAIL)
+            @Html.TextBoxFor(x => x.MAIL, new { @class = "form-control" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.SIFRE)
+            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+        </td>
+    </tr>
+
+
+</table>
+

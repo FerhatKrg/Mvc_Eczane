@@ -1,0 +1,38 @@
+﻿@model Mvc_Eczane.Models.Entity.TBLSATIS
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Satış İşlemi Sayfası</h2>
+
+@using (Html.BeginForm("Index", "Satis", FormMethod.Post))
+{
+    <div style="margin-top:15px">
+        <label>Personel Id</label>
+        @*<input type="text" name="PERSONEL" value="@ViewBag.user" readonly class="form-control" />*@
+        @Html.TextBoxFor(x => x.PERSONEL,new  {@Value= @ViewBag.user ,@class="form-control" , @readonly="readonly"})
+    </div>
+
+    <div style="margin-top:15px">
+        <label>Eczane Id</label>
+        @Html.TextBoxFor(x => x.ECZANE, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>İlaç Id</label>
+        @Html.TextBoxFor(x => x.ILAC, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>Satış Adeti</label>
+        @Html.TextBoxFor(x => x.SATISADET, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-primary" style="margin-top:15px">Satış Yap</button>
+    if (ViewBag.msj1 != null)
+    {
+        <div class="alert alert-info" style="margin-top:15px">
+            @ViewBag.msj1
+        </div>
+    }
+}

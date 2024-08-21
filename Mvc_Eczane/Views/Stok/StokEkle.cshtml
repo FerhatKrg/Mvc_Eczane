@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "StokEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("StokEkle", "Stok", FormMethod.Post))
+{
+    <div style="margin-top:15px">
+        <input type="text" name="id" class="form-control" />
+    </div>
+
+    <div style="margin-top:15px">
+        <input type="text" name="stok" class="form-control" />
+    </div>
+
+    <div style="margin-top:15px">
+        <input type="text" name="Fiyat" class="form-control" />
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Stok Ekle</button>
+    </div>
+
+    <div >
+        @if (ViewBag.msj != null)
+        {
+            <p class="alert alert-info">@ViewBag.msj</p>
+        }
+    </div>
+}
